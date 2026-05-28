@@ -1,7 +1,10 @@
 // ============================================================================
 // MYSTICOS RP - BANCO DE PREGUNTAS PARA WHITELIST ORAL
 // Fuente: Normativa oficial actualizada (https://mysticos-rp.gitbook.io/normativa-mysticos-rp)
-// Total: 160 preguntas (55 General / 40 Legal / 50 OD / 15 EMS)
+// Total: 300 preguntas (92 General / 79 Legal / 84 OD / 45 EMS)
+// La tómbola sortea al azar: 30 de General (min. 10 básicas) + 20 de cada opcional
+// NOTA: los comentarios de sección dentro del array son solo organizativos;
+//       la tómbola agarra TODAS las preguntas según su campo "cat".
 // ============================================================================
 
 export const CATEGORIES = {
@@ -14,7 +17,7 @@ export const CATEGORIES = {
 export const QUESTIONS = [
 
   // ══════════════════════════════════════════════════════════════════════════
-  // GENERAL (55 preguntas)
+  // GENERAL (92 preguntas en total · la tómbola saca 30)
   // ══════════════════════════════════════════════════════════════════════════
 
   // ─── Comandos básicos ───
@@ -307,7 +310,7 @@ export const QUESTIONS = [
   // Quedan por cubrir en LEGAL: NCD, CJ, Estado de inconsciencia, Vacíos legales, DNI/Placa, Doble Facción
 
   // ══════════════════════════════════════════════════════════════════════════
-  // LEGAL (40 preguntas)
+  // LEGAL (79 preguntas en total · la tómbola saca 20)
   // ══════════════════════════════════════════════════════════════════════════
 
   // ─── Conceptos varios trasladados a Legal por contexto ───
@@ -588,7 +591,7 @@ export const QUESTIONS = [
   },
 
   // ══════════════════════════════════════════════════════════════════════════
-  // OD / DELICTUAL (50 preguntas)
+  // OD / DELICTUAL (84 preguntas en total · la tómbola saca 20)
   // ══════════════════════════════════════════════════════════════════════════
 
   // ─── Vestimentas / Consideraciones iniciales ───
@@ -868,7 +871,7 @@ export const QUESTIONS = [
   },
 
   // ══════════════════════════════════════════════════════════════════════════
-  // EMS (15 preguntas)
+  // EMS (45 preguntas en total · la tómbola saca 20)
   // ══════════════════════════════════════════════════════════════════════════
 
   {
