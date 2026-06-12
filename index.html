@@ -182,7 +182,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
       <h2>Reglas de Aprobación (Fijas)</h2>
       <p class="sub">Estos umbrales no se pueden modificar y se aplican automáticamente durante la evaluación.</p>
       <div class="fixed-rules">
-        <div class="rule"><span>General — preguntas mostradas</span><b>30</b></div>
+        <div class="rule"><span>General — preguntas mostradas</span><b>20</b></div>
         <div class="rule"><span>General — máximo de errores permitidos</span><b>2 (reprueba a la 3ª)</b></div>
         <div class="rule"><span>Cada sección opcional — preguntas mostradas</span><b>20</b></div>
         <div class="rule"><span>Opcional — máximo de errores permitidos</span><b>1 (reprueba a la 2ª)</b></div>
@@ -253,7 +253,7 @@ import { CATEGORIES, QUESTIONS } from './questions.js';
 
 // ───────────────────────── CONFIG FIJA ─────────────────────────
 const CONFIG = {
-  general:   { draw: 30, maxWrong: 2, minBasic: 10 },   // reprueba a la 3ª mala
+  general:   { draw: 20, maxWrong: 2, minBasic: 8 },    // reprueba a la 3ª mala
   optional:  { draw: 20, maxWrong: 1 },                 // reprueba a la 2ª mala
 };
 const OPTIONAL_ORDER = ['legal','od','ems']; // orden de hojas opcionales
@@ -278,23 +278,73 @@ function shuffle(arr){
 }
 function byCat(cat){ return QUESTIONS.filter(q=>q.cat===cat); }
 
-// Tómbola General: garantiza mínimo de "basic" y completa al azar, sin repetir
+// ───── MEMORIA ENTRE EVALUACIONES (persiste mientras no se recargue la página) ─────
+// usedIds.<cat> = Set de IDs ya usados en evaluaciones previas de esta sesión.
+// recycled.<cat> = true si en la última evaluación tuvimos que reciclar esa categoría.
+const usedIds = { general:new Set(), legal:new Set(), od:new Set(), ems:new Set() };
+const recycled = { general:false, legal:false, od:false, ems:false };
+
+// Toma N preguntas únicas de un pool, prefiriendo las no usadas.
+// Si no alcanzan las no-usadas, recicla (limpia historial de esa cat y vuelve a sortear desde cero).
+function pickUnseen(cat, candidates, need){
+  recycled[cat] = false;
+  let fresh = candidates.filter(q => !usedIds[cat].has(q.id));
+  if(fresh.length < need){
+    // Reciclar: limpiar historial y volver a tener todo el pool disponible
+    usedIds[cat].clear();
+    recycled[cat] = true;
+    fresh = candidates.slice();
+  }
+  const picked = shuffle(fresh).slice(0, need);
+  picked.forEach(q => usedIds[cat].add(q.id));
+  return picked;
+}
+
+// Tómbola General: mínimo de "basic" + completar al azar, evitando repetir entre evaluaciones
 function drawGeneral(){
   const all = byCat('general');
-  const basics = shuffle(all.filter(q=>q.basic===true));
-  const rest   = shuffle(all.filter(q=>!q.basic));
   const need = CONFIG.general.draw;
-  const minB = Math.min(CONFIG.general.minBasic, basics.length);
-  const picked = basics.slice(0, minB);
-  const remaining = shuffle([...basics.slice(minB), ...rest]);
-  for(const q of remaining){
-    if(picked.length>=need) break;
-    picked.push(q);
+  const minB = Math.min(CONFIG.general.minBasic, all.filter(q=>q.basic).length);
+
+  // 1) Primero intentamos cumplir el mínimo de básicas SIN repetir
+  recycled.general = false;
+  const allBasics = all.filter(q=>q.basic);
+  let freshBasics = allBasics.filter(q => !usedIds.general.has(q.id));
+  let basicsPick;
+  if(freshBasics.length >= minB){
+    basicsPick = shuffle(freshBasics).slice(0, minB);
+  } else {
+    // No hay suficientes básicas frescas → reciclar SOLO las básicas usadas
+    // (sin tocar el resto del historial todavía, para mantener máxima frescura)
+    const used = new Set(usedIds.general);
+    allBasics.forEach(q => used.delete(q.id));
+    usedIds.general = used;
+    recycled.general = true;
+    freshBasics = allBasics.filter(q => !usedIds.general.has(q.id));
+    basicsPick = shuffle(freshBasics).slice(0, minB);
   }
-  return shuffle(picked).slice(0,need);
+  basicsPick.forEach(q => usedIds.general.add(q.id));
+
+  // 2) Completar las (need - minB) restantes con cualquier pregunta no usada (no básica o básica sobrante)
+  const remainNeed = need - basicsPick.length;
+  const stillUnused = all.filter(q => !usedIds.general.has(q.id));
+  let restPick;
+  if(stillUnused.length >= remainNeed){
+    restPick = shuffle(stillUnused).slice(0, remainNeed);
+  } else {
+    // Reciclar todo el historial de general
+    usedIds.general = new Set(basicsPick.map(q=>q.id)); // mantener solo las básicas recién elegidas
+    recycled.general = true;
+    const pool = all.filter(q => !usedIds.general.has(q.id));
+    restPick = shuffle(pool).slice(0, remainNeed);
+  }
+  restPick.forEach(q => usedIds.general.add(q.id));
+
+  return shuffle([...basicsPick, ...restPick]).slice(0, need);
 }
+
 function drawOptional(cat){
-  return shuffle(byCat(cat)).slice(0, CONFIG.optional.draw);
+  return pickUnseen(cat, byCat(cat), CONFIG.optional.draw);
 }
 
 // ───────────────────────── SETUP UI ─────────────────────────
@@ -328,8 +378,23 @@ function refreshStart(){
   const ok = name.length>0;
   document.getElementById('btn-start').disabled = !ok;
   const opt = state.activeOptional.size;
-  document.getElementById('setup-note').textContent =
-    `Se evaluará: General${opt? ' + '+[...state.activeOptional].map(id=>CATEGORIES[id].label).join(' + ') : ''} · Total preguntas: ${30 + opt*20}`;
+  const totalQ = CONFIG.general.draw + opt * CONFIG.optional.draw;
+
+  // Info de pool disponible
+  const sections = ['general', ...[...state.activeOptional]];
+  const poolInfo = sections.map(cat=>{
+    const total = byCat(cat).length;
+    const used = usedIds[cat].size;
+    const fresh = total - used;
+    const need = (cat==='general' ? CONFIG.general.draw : CONFIG.optional.draw);
+    const tag = fresh < need ? ` ⚠ se reciclará` : '';
+    return `${CATEGORIES[cat].label}: ${fresh}/${total} sin usar${tag}`;
+  }).join(' · ');
+
+  const sectionsLabel = ['General', ...[...state.activeOptional].map(id=>CATEGORIES[id].label)].join(' + ');
+  document.getElementById('setup-note').innerHTML =
+    `Se evaluará: ${sectionsLabel} · Total preguntas: ${totalQ}` +
+    (poolInfo ? `<br><span style="color:var(--text3);font-size:.7rem;">Pool disponible esta sesión → ${poolInfo}</span>` : '');
 }
 document.getElementById('inp-name').addEventListener('input', refreshStart);
 
@@ -383,10 +448,14 @@ function startSheet(){
   const c = CATEGORIES[cat];
   document.getElementById('sec-tag').style.setProperty('--cat', c.color);
   document.getElementById('sec-name').textContent = c.label + (isOptional(cat)?' (opcional)':' (obligatoria)');
-  // banner límite
+  // banner límite (+ aviso de reciclaje si corresponde)
   const mw = maxWrongFor(cat);
   const wb = document.getElementById('warn-limit');
-  wb.textContent = `⚠ Máximo ${mw} ${mw===1?'error':'errores'} en esta sección · reprueba automáticamente al fallar ${mw+1}`;
+  let bannerText = `⚠ Máximo ${mw} ${mw===1?'error':'errores'} en esta sección · reprueba automáticamente al fallar ${mw+1}`;
+  if(recycled[cat]){
+    bannerText += `  ·  ♻ Pool de ${c.label} reciclado (se agotaron las preguntas no vistas)`;
+  }
+  wb.textContent = bannerText;
   // root color
   document.documentElement.style.setProperty('--cat', c.color);
   renderQuestion();
