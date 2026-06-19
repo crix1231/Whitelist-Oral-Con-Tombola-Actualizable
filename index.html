@@ -182,10 +182,10 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
       <h2>Reglas de Aprobación (Fijas)</h2>
       <p class="sub">Estos umbrales no se pueden modificar y se aplican automáticamente durante la evaluación.</p>
       <div class="fixed-rules">
-        <div class="rule"><span>General — preguntas mostradas</span><b>20</b></div>
+        <div class="rule"><span>General — preguntas mostradas</span><b>15</b></div>
         <div class="rule"><span>General — máximo de errores permitidos</span><b>2 (reprueba a la 3ª)</b></div>
-        <div class="rule"><span>Cada sección opcional — preguntas mostradas</span><b>20</b></div>
-        <div class="rule"><span>Opcional — máximo de errores permitidos</span><b>1 (reprueba a la 2ª)</b></div>
+        <div class="rule"><span>Cada sección opcional — preguntas mostradas</span><b>15</b></div>
+        <div class="rule"><span>Opcional — máximo de errores permitidos</span><b>2 (reprueba a la 3ª)</b></div>
         <div class="rule"><span>Avance entre hojas</span><b>Solo al aprobar la anterior</b></div>
         <div class="rule"><span>Auto-avance al marcar Correcto</span><b>Activado</b></div>
       </div>
@@ -253,8 +253,8 @@ import { CATEGORIES, QUESTIONS } from './questions.js';
 
 // ───────────────────────── CONFIG FIJA ─────────────────────────
 const CONFIG = {
-  general:   { draw: 20, maxWrong: 2, minBasic: 8 },    // reprueba a la 3ª mala
-  optional:  { draw: 20, maxWrong: 1 },                 // reprueba a la 2ª mala
+  general:   { draw: 15, maxWrong: 2, minBasic: 6 },    // 15 preg, reprueba a la 3ª mala, mín 6 básicas
+  optional:  { draw: 15, maxWrong: 2 },                 // 15 preg, reprueba a la 3ª mala
 };
 const OPTIONAL_ORDER = ['legal','od','ems']; // orden de hojas opcionales
 
@@ -279,18 +279,15 @@ function shuffle(arr){
 function byCat(cat){ return QUESTIONS.filter(q=>q.cat===cat); }
 
 // ───── MEMORIA ENTRE EVALUACIONES (persiste mientras no se recargue la página) ─────
-// usedIds.<cat> = Set de IDs ya usados en evaluaciones previas de esta sesión.
-// recycled.<cat> = true si en la última evaluación tuvimos que reciclar esa categoría.
-const usedIds = { general:new Set(), legal:new Set(), od:new Set(), ems:new Set() };
-const recycled = { general:false, legal:false, od:false, ems:false };
+const usedIds  = { general:new Set(), legal:new Set(), od:new Set(), ems:new Set() };
+const recycled = { general:false,    legal:false,    od:false,    ems:false    };
 
 // Toma N preguntas únicas de un pool, prefiriendo las no usadas.
-// Si no alcanzan las no-usadas, recicla (limpia historial de esa cat y vuelve a sortear desde cero).
+// Si las no-usadas son insuficientes → recicla (limpia historial y vuelve a sortear).
 function pickUnseen(cat, candidates, need){
   recycled[cat] = false;
   let fresh = candidates.filter(q => !usedIds[cat].has(q.id));
   if(fresh.length < need){
-    // Reciclar: limpiar historial y volver a tener todo el pool disponible
     usedIds[cat].clear();
     recycled[cat] = true;
     fresh = candidates.slice();
@@ -306,7 +303,7 @@ function drawGeneral(){
   const need = CONFIG.general.draw;
   const minB = Math.min(CONFIG.general.minBasic, all.filter(q=>q.basic).length);
 
-  // 1) Primero intentamos cumplir el mínimo de básicas SIN repetir
+  // 1) Mínimo de básicas SIN repetir (si no alcanza, recicla solo las básicas)
   recycled.general = false;
   const allBasics = all.filter(q=>q.basic);
   let freshBasics = allBasics.filter(q => !usedIds.general.has(q.id));
@@ -314,8 +311,6 @@ function drawGeneral(){
   if(freshBasics.length >= minB){
     basicsPick = shuffle(freshBasics).slice(0, minB);
   } else {
-    // No hay suficientes básicas frescas → reciclar SOLO las básicas usadas
-    // (sin tocar el resto del historial todavía, para mantener máxima frescura)
     const used = new Set(usedIds.general);
     allBasics.forEach(q => used.delete(q.id));
     usedIds.general = used;
@@ -325,15 +320,14 @@ function drawGeneral(){
   }
   basicsPick.forEach(q => usedIds.general.add(q.id));
 
-  // 2) Completar las (need - minB) restantes con cualquier pregunta no usada (no básica o básica sobrante)
+  // 2) Completar las restantes con cualquier no-usada (si no alcanza, recicla todo el resto)
   const remainNeed = need - basicsPick.length;
   const stillUnused = all.filter(q => !usedIds.general.has(q.id));
   let restPick;
   if(stillUnused.length >= remainNeed){
     restPick = shuffle(stillUnused).slice(0, remainNeed);
   } else {
-    // Reciclar todo el historial de general
-    usedIds.general = new Set(basicsPick.map(q=>q.id)); // mantener solo las básicas recién elegidas
+    usedIds.general = new Set(basicsPick.map(q=>q.id));
     recycled.general = true;
     const pool = all.filter(q => !usedIds.general.has(q.id));
     restPick = shuffle(pool).slice(0, remainNeed);
@@ -380,14 +374,14 @@ function refreshStart(){
   const opt = state.activeOptional.size;
   const totalQ = CONFIG.general.draw + opt * CONFIG.optional.draw;
 
-  // Info de pool disponible
+  // Info de pool disponible en esta sesión
   const sections = ['general', ...[...state.activeOptional]];
   const poolInfo = sections.map(cat=>{
     const total = byCat(cat).length;
     const used = usedIds[cat].size;
     const fresh = total - used;
     const need = (cat==='general' ? CONFIG.general.draw : CONFIG.optional.draw);
-    const tag = fresh < need ? ` ⚠ se reciclará` : '';
+    const tag = fresh < need ? ' ⚠ se reciclará' : '';
     return `${CATEGORIES[cat].label}: ${fresh}/${total} sin usar${tag}`;
   }).join(' · ');
 
