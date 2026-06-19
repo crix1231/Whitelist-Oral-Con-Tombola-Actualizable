@@ -116,8 +116,8 @@ export const QUESTIONS = [
   },
   {
     id: 18, cat: "general",
-    q: "¿Qué reglas debe cumplir un oficial que porte francotirador?",
-    a: "- Llevar únicamente el Francotirador y su arma de servicio de bajo calibre.\n- Máximo 25 balas.\n- Bolso táctico para transportar el armamento.\n- Prohibido portar otro armamento adicional.\n- El rol debe ser ejecutado por SWAT o SERT con autorización.\n- Debe instalarse en punto elevado o estratégico definido por la coordinación IC.\n- NO puede abrir fuego sin autorización IC o justificación táctica."
+    q: "¿Qué reglas debes cumplir al usar un francotirador?",
+    a: "- Llevar únicamente el Francotirador y su arma de de bajo calibre.\n- Máximo 25 balas.\n- Bolso táctico para transportar el armamento.\n- Prohibido portar otro armamento adicional.\n- El rol debe ser ejecutado por SWAT | SERT | OD con autorización.\n- Debe instalarse en punto elevado o estratégico definido por la coordinación IC.\n- NO puede abrir fuego sin autorización IC o justificación táctica."
   },
 
   // ─── Conceptos de Rol (41 conceptos del GitBook) ───
