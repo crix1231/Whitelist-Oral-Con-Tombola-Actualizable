@@ -322,7 +322,7 @@ export const QUESTIONS = [
   {
     id: 57, cat: "legal",
     q: "¿Qué es el CJ (Carjacked)?",
-    a: "Robo de autos sin ningún tipo de rol previo en una ZONA SEGURA.\n\nImplica que un jugador roba un vehículo de otro jugador o NPC sin haber establecido una narrativa previa, lo que rompe la inmersión y coherencia del rol.\n\nSanciones: desde advertencias hasta suspensión temporal o permanente."
+    a: "Robo de autos sin ningún tipo de rol previo en una ZONA SEGURA.\n\nImplica que un jugador roba un vehículo de otro jugador sin haber establecido una narrativa previa, lo que rompe la inmersión y coherencia del rol.\n\nSanciones: desde advertencias hasta suspensión temporal o permanente."
   },
   {
     id: 58, cat: "legal",
@@ -1557,7 +1557,7 @@ export const QUESTIONS = [
 
   {
     id: 291, cat: "general",
-    q: "SITUACIÓN: Robas un vehículo a un NPC en plena comisaría sin ningún rol previo. ¿Qué falta cometes?",
+    q: "SITUACIÓN: Robas un vehículo a un Jugador en plena comisaría sin ningún rol previo. ¿Qué falta cometes?",
     a: "CJ (Carjacked): robo de autos sin rol previo en una zona segura.\n\nLas comisarías son zonas seguras (radio 300m). Robar ahí sin narrativa rompe la inmersión y es sancionable, desde advertencias hasta suspensión."
   },
   {
