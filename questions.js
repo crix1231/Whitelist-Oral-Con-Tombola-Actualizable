@@ -722,7 +722,7 @@ export const QUESTIONS = [
   {
     id: 129, cat: "od",
     q: "¿Qué reglas rigen el uso de helicópteros en Cayo Perico?",
-    a: "- Uso LIMITADO únicamente para llegada y salida de la isla.\n- Solo se permite aterrizar y estacionar en el GARAJE PRINCIPAL del aeropuerto de Cayo Perico.\n- Una vez en la isla, movilización exclusiva en vehículos personales (NO Mysticos).\n- NO se permite usar helicópteros para sobrevolar, patrullar o buscar ubicaciones."
+    a: "- El uso de helicópteros está limitado únicamente para la llegada y salida de la isla de Cayo Perico. .\n- Solo se permite aterrizar y estacionar en el GARAJE PRINCIPAL del aeropuerto de Cayo Perico.\n- Una vez en la isla, la movilización es exclusiva en vehículos personales (NO Mysticos).\n- NO se permite usar helicópteros para sobrevolar, patrullar o buscar ubicaciones."
   },
   {
     id: 130, cat: "od",
