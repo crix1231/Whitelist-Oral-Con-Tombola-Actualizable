@@ -182,9 +182,9 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
       <h2>Reglas de Aprobación (Fijas)</h2>
       <p class="sub">Estos umbrales no se pueden modificar y se aplican automáticamente durante la evaluación.</p>
       <div class="fixed-rules">
-        <div class="rule"><span>General — preguntas mostradas</span><b>15</b></div>
+        <div class="rule"><span>General — preguntas mostradas</span><b>12</b></div>
         <div class="rule"><span>General — máximo de errores permitidos</span><b>2 (reprueba a la 3ª)</b></div>
-        <div class="rule"><span>Cada sección opcional — preguntas mostradas</span><b>15</b></div>
+        <div class="rule"><span>Cada sección opcional — preguntas mostradas</span><b>12</b></div>
         <div class="rule"><span>Opcional — máximo de errores permitidos</span><b>2 (reprueba a la 3ª)</b></div>
         <div class="rule"><span>Avance entre hojas</span><b>Solo al aprobar la anterior</b></div>
         <div class="rule"><span>Auto-avance al marcar Correcto</span><b>Activado</b></div>
@@ -253,8 +253,8 @@ import { CATEGORIES, QUESTIONS } from './questions.js';
 
 // ───────────────────────── CONFIG FIJA ─────────────────────────
 const CONFIG = {
-  general:   { draw: 15, maxWrong: 2, minBasic: 6 },    // 15 preg, reprueba a la 3ª mala, mín 6 básicas
-  optional:  { draw: 15, maxWrong: 2 },                 // 15 preg, reprueba a la 3ª mala
+  general:   { draw: 12, maxWrong: 2, minBasic: 6 },    // 12 preg, reprueba a la 3ª mala, mín 6 básicas
+  optional:  { draw: 12, maxWrong: 2 },                 // 12 preg, reprueba a la 3ª mala
 };
 const OPTIONAL_ORDER = ['legal','od','ems']; // orden de hojas opcionales
 
