@@ -44,7 +44,8 @@ export const QUESTIONS = [
   {
     id: 5, cat: "general", basic: true,
     q: "¿Para qué sirve /REPORT?",
-    a: "/REPORT: Contactar al staff por situaciones que requieren intervención fuera del rol (reportes de jugadores, bugs, quedar atrapado fuera del mapa, ser atropellado sin motivo, etc).
+    a: "/REPORT: Contactar al staff por situaciones que requieren intervención fuera del rol (reportes de jugadores, bugs, quedar atrapado fuera del mapa, ser atropellado sin motivo, etc)."
+  },
   {
     id: 6, cat: "general",
     q: "¿Qué reglas rigen el uso del comando /ANUNCIO?",
