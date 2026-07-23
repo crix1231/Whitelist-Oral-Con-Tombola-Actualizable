@@ -43,9 +43,8 @@ export const QUESTIONS = [
   },
   {
     id: 5, cat: "general", basic: true,
-    q: "¿Para qué sirve /REPORT y en qué se diferencia de /AYUDA?",
-    a: "/REPORT: Contactar al staff por situaciones que requieren intervención fuera del rol (reportes de jugadores, bugs, quedar atrapado fuera del mapa, ser atropellado sin motivo, etc).\n\n/AYUDA: Para consultas importantes (disponibilidad de staff, dudas de teclas/configuración, funcionamiento de jobs). NO debe usarse para conversaciones innecesarias, bromas o consultas irrelevantes."
-  },
+    q: "¿Para qué sirve /REPORT?",
+    a: "/REPORT: Contactar al staff por situaciones que requieren intervención fuera del rol (reportes de jugadores, bugs, quedar atrapado fuera del mapa, ser atropellado sin motivo, etc).
   {
     id: 6, cat: "general",
     q: "¿Qué reglas rigen el uso del comando /ANUNCIO?",
@@ -1088,7 +1087,7 @@ export const QUESTIONS = [
   {
     id: 199, cat: "general",
     q: "SITUACIÓN: Quedas atrapado fuera del mapa por un bug. ¿Qué comando usas?",
-    a: "/report. Se usa para situaciones que requieren intervención del staff fuera del rol: bugs, quedar atrapado, caerse del mapa, ser atropellado sin motivo, etc.\n\nNO uses /ayuda para esto (esa es para consultas), ni vuelvas al rol delictual si quedaste fuera por un crasheo/time out propio."
+    a: "/report. Se usa para situaciones que requieren intervención del staff fuera del rol: bugs, quedar atrapado, caerse del mapa, ser atropellado sin motivo, etc.\n\nNo vuelvas al rol delictual si quedaste fuera por un crasheo/time out propio."
   },
   {
     id: 200, cat: "general",
