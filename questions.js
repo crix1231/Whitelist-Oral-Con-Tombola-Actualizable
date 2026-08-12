@@ -941,8 +941,8 @@ export const QUESTIONS = [
   },
   {
     id: 170, cat: "ems",
-    q: "¿Bajo qué normativa cae un EMS si responde a un civil durante DEFCON 1?",
-    a: "Es una falta a protocolo. Durante DEFCON 1 el EMS debe priorizar EXCLUSIVAMENTE los llamados de radio emitidos por el LSPD.\n\nResponder a /auxilio civiles en DEFCON 1 contradice el protocolo de Alerta Roja y puede derivar en sanción interna del cuerpo EMS según su normativa interna."
+    q: "¿Puede un paciente decidir por sí mismo la muerte permanente (CK) de su personaje durante una atención de EMS?",
+    a: "NO. Ningún paciente puede decidir unilateralmente su Character Kill.\n\nSolo procede con autorización expresa de la Administración del servidor. El personal EMS debe actuar siempre bajo criterios médicos, nunca por conveniencia de los involucrados."
   },
   {
     id: 171, cat: "ems",
@@ -1022,8 +1022,8 @@ export const QUESTIONS = [
   },
   {
     id: 186, cat: "general",
-    q: "SITUACIÓN: Atropellas intencionalmente a un jugador con tu auto sin ningún rol previo ni motivo. ¿Qué falta cometes?",
-    a: "VDM (Vehicle Deathmatch): usar el vehículo como arma para dañar o eliminar a otro jugador sin razón justificada ni contexto de rol previo.\n\nSanciones severas: desde advertencias hasta expulsión permanente, según gravedad y antecedentes."
+    q: "SITUACIÓN: Te desconectas por Time Out mientras estás abatido en un rol activo. ¿Cuánto tiempo tienes para volver al servidor?",
+    a: "Tienes un plazo máximo de 15 minutos para regresar y continuar el rol como abatido.\n\nSi no vuelves en ese plazo, debes justificar la ausencia con pruebas ante el Staff; de lo contrario se considera evasión de rol y se sanciona con 5 días de baneo."
   },
   {
     id: 187, cat: "general",
@@ -1135,8 +1135,8 @@ export const QUESTIONS = [
   },
   {
     id: 208, cat: "legal",
-    q: "Como oficial, ¿puedes disparar desde el helicóptero institucional?",
-    a: "NO. Está PROHIBIDO disparar desde el helicóptero en cualquier rol.\n\nEl helicóptero solo sirve para reconocimiento aéreo y reposicionar oficiales en lugares estratégicos. El piloto no cuenta como +1/+2 y solo puede portar su arma de servicio."
+    q: "¿Bajo qué condiciones se permite usar un helicóptero en un acto delictual?",
+    a: "Solo cuando exista una negociación previa dentro del procedimiento.\n\nAdemás debe justificarse por necesidad táctica (traslado u observación), disponibilidad de unidades en tierra y las condiciones del entorno (zonas abiertas, seguimiento aéreo, rescate)."
   },
   {
     id: 209, cat: "legal",
@@ -1150,8 +1150,8 @@ export const QUESTIONS = [
   },
   {
     id: 211, cat: "legal",
-    q: "Como facción legal, ¿qué debes hacer antes de iniciar un interrogatorio a un detenido?",
-    a: "Leer NUEVAMENTE los Derechos Miranda al detenido antes de comenzar.\n\nSi no se realiza la lectura, el detenido puede optar a Habeas Corpus, el procedimiento es inválido y debe ser puesto en libertad. Todo interrogatorio debe archivarse con evidencia audiovisual."
+    q: "¿Qué ocurre si un rol de interrogatorio entre facción legal y OD supera los 30 minutos de duración?",
+    a: "Se aplican sanciones administrativas directas a la jefatura de la facción legal a cargo del interrogatorio y a quien lo realiza, además de la ANULACIÓN del rol realizado.\n\nEl límite de 30 minutos busca evitar alargar innecesariamente los roles y mantener una experiencia dinámica para todos."
   },
   {
     id: 212, cat: "legal",
@@ -1165,8 +1165,8 @@ export const QUESTIONS = [
   },
   {
     id: 214, cat: "legal",
-    q: "¿Qué requisitos de edad se necesitan para postular a una facción policial?",
-    a: "Mayor de 16 años OOC y 18 años IC.\n\nAdemás: poseer WL o WL Oral, condición física apta, buenas habilidades de comunicación y trabajo en equipo, sin antecedentes penales y sin multas."
+    q: "SITUACIÓN: Un vehículo intenta embestir un Control Fronterizo de FDN para romper el perímetro. ¿Debe FDN respetar el Fair Play?",
+    a: "NO. Al tratarse de una facción militar en un operativo de seguridad nacional, FDN no está obligada a respetar el Fair Play frente a quienes inicien el enfrentamiento intentando vulnerar el control.\n\nPuede responder de inmediato con el armamento autorizado según el nivel de DEFCON vigente."
   },
   {
     id: 215, cat: "legal",
@@ -1195,8 +1195,8 @@ export const QUESTIONS = [
   },
   {
     id: 220, cat: "legal",
-    q: "SITUACIÓN: Eres oficial y un detenido te falta el respeto gravemente sin motivo. ¿Puede pedirte la placa?",
-    a: "Sí, en ese caso el rol lo justifica (faltas de respeto injustificadas, negligencias en procedimiento o detención injustificada).\n\nDebes dar tu placa, pero él debe preguntar el rango y NO puede retirar el ítem físico. Si forzó el rol para obtenerla, la placa queda inválida."
+    q: "¿Qué debe hacer un ciudadano al aproximarse a un Control Fronterizo de FDN?",
+    a: "Debe disminuir la velocidad y detener completamente su vehículo cuando se lo soliciten, acatar las instrucciones del personal de FDN, cooperar con la identificación, revisión personal y registro del vehículo, y mantener un comportamiento acorde al rol.\n\nEvadir el control, negarse a colaborar o poner en riesgo al personal militar se considera conducta hostil."
   },
   {
     id: 221, cat: "legal",
@@ -1205,8 +1205,8 @@ export const QUESTIONS = [
   },
   {
     id: 222, cat: "legal",
-    q: "¿Cuánto cuesta la Licencia de Vuelo y qué pasa si vuelas sin ella?",
-    a: "Cuesta $100.000. Requiere DNI, test psicológico aprobado por EMS y sin antecedentes penales, además de aprobar un examen práctico.\n\nVolar sin licencia es falta grave: puede acarrear sanciones o arresto. Las licencias se revocan por delitos o accidentes con aeronaves."
+    q: "¿Qué facultades tiene el personal de FDN durante un Control Fronterizo?",
+    a: "Puede: controlar e identificar ciudadanos, revisar antecedentes de los ocupantes, realizar registro personal conforme al rol, inspeccionar vehículos, fiscalizar la carga transportada y buscar/incautar armas, drogas, municiones, dinero ilícito u otros artículos ilegales.\n\nEl objetivo es detectar transporte de elementos ilegales o vínculos con organizaciones criminales."
   },
   {
     id: 223, cat: "legal",
@@ -1220,13 +1220,13 @@ export const QUESTIONS = [
   },
   {
     id: 225, cat: "legal",
-    q: "SITUACIÓN: Eres granadero en un rol. Ya lanzaste 5 gases. ¿Puedes lanzar más?",
-    a: "NO. Solo un oficial puede ser granadero y no puede usar más de 5 gases en el rol.\n\nSi la OD pidió que no se usaran gases y los oficiales se negaron, debió resolverse con dados antes."
+    q: "Si durante un interrogatorio se quiere iniciar un rol sensible, ¿qué se debe hacer primero?",
+    a: "Debe solicitarse previamente mediante /ooc y requiere la aceptación expresa del jugador involucrado.\n\nSi el jugador rechaza el rol sensible, se debe buscar una alternativa dentro del interrogatorio; forzarlo está prohibido."
   },
   {
     id: 226, cat: "legal",
-    q: "¿En qué casos especiales una persecución puede extenderse a 25 minutos en lugar de los 5 estándar?",
-    a: "Robo a Banco Central, Robo a Banco de Paleto, Intervención en Humane Labs y Secuestro de oficiales de facciones legales.\n\nLa extensión la autoriza el mando operativo y está sujeta a evaluación táctica constante."
+    q: "¿A qué hora se activa el Control Fronterizo de FDN y qué nivel de DEFCON se establece?",
+    a: "A partir de las 20:00 horas se activa DEFCON 2, momento en que FDN queda facultada para instalar y operar Controles Fronterizos en carreteras y accesos estratégicos.\n\nEl objetivo es fortalecer la seguridad nacional y prevenir el traslado de armamento, sustancias u otros elementos ilícitos."
   },
 
   // ════════════════ OD / DELICTUAL ADICIONALES ════════════════
@@ -1238,8 +1238,8 @@ export const QUESTIONS = [
   },
   {
     id: 228, cat: "od",
-    q: "SITUACIÓN: Llevas 1 hora y 40 minutos en un rol de robo. Ganas el tiroteo. ¿Puedes catear a los oficiales abatidos?",
-    a: "NO. El cateo está prohibido en roles que excedan 1 hora y media (1:30) desde el GO.\n\nComo ya pasaron 1:40, no se puede catear a nadie (ni OD ni facción legal)."
+    q: "¿Está permitido pelear o disputar un robo que ya fue iniciado por otro grupo?",
+    a: "NO. Queda estrictamente prohibido pelear o disputar robos bajo cualquier circunstancia.\n\nNingún grupo, organización o individuo puede generar conflictos o confrontaciones para apropiarse de un robo ya iniciado o en proceso. Es una norma absoluta, sin excepciones."
   },
   {
     id: 229, cat: "od",
@@ -1283,8 +1283,8 @@ export const QUESTIONS = [
   },
   {
     id: 237, cat: "od",
-    q: "SITUACIÓN: Estás en una ZR de ciudad. ¿Qué calibre puedes usar y puedes usar casco?",
-    a: "En ZR de CIUDAD: únicamente BAJO CALIBRE, y está PROHIBIDO el uso de casco.\n\nEn ZR NORTE sí se permite todo tipo de calibre (excepto francotirador) y casco si se especifica en el entorno."
+    q: "¿Está permitido usar la radio para 'romper pared' durante un enfrentamiento?",
+    a: "NO. Está prohibido abusar de la radio para 'romper pared' durante enfrentamientos.\n\nSolo se permite su uso en caso de una 'call', y su aplicación queda sujeta a la evaluación del administrador sobre cómo afecta el rol."
   },
   {
     id: 238, cat: "od",
@@ -1313,8 +1313,8 @@ export const QUESTIONS = [
   },
   {
     id: 243, cat: "od",
-    q: "¿Cuántos asaltos a civiles están permitidos por día y cuánto dinero máximo puedes robar?",
-    a: "Máximo 4 asaltos por día (registrados en bitácora si es OD).\nDinero máximo: $50.000.\n\nProhibido robar: comida/bebestible, celular/radio, cosas VIP, accesorios de armas, accesorios UWU/ToyStore. Armas permitidas: bajo calibre, cortopunzantes y bate."
+    q: "¿Cuántas OD pueden aliarse dentro de una Zona Roja?",
+    a: "Se permite alianza entre un máximo de 2 OD dentro de Zonas Rojas.\n\nPara que la alianza sea válida, ambas organizaciones deben presentarse y participar desde el inicio del rol; no se permite sumar aliados una vez iniciado el enfrentamiento, ya que se consideraría refuerzos y estaría prohibido."
   },
   {
     id: 244, cat: "od",
@@ -1358,13 +1358,13 @@ export const QUESTIONS = [
   },
   {
     id: 252, cat: "od",
-    q: "SITUACIÓN: En el robo a Yate, ¿cómo debe posicionarse cada bando antes de iniciar?",
-    a: "Cada bando debe posicionarse en CADA EXTREMO del yate (no se pueden usar los baños del 1er nivel), respetando el Fair Play para ambos.\n\nUna vez posicionados, se da el GO al rol tras el anuncio de la facción legal. No se permite usar el techo del yate para ganar ventaja."
+    q: "¿Está permitido usar miras permanentes o programas externos durante un enfrentamiento?",
+    a: "NO. Está prohibido el uso de miras permanentes (por comando, del ordenador o programas externos) y de archivos o programas externos que alteren lo visible en el juego (como citizens modificados que oculten arbustos, agua o rejas).\n\nSolo se permite el uso de modificaciones de citizen que mejoren los colores del entorno."
   },
   {
     id: 253, cat: "od",
-    q: "¿Por qué el robo a Life Invader no permite huida ni vehículos?",
-    a: "Porque es un robo de SOLO TIROTEO que debe realizarse dentro del recinto. No se permiten vehículos ni huida.\n\nSe puede salir del recinto y tirotearse dentro del perímetro del Life Invader. No se permite casco, ni negociar el bloqueo de la puerta principal. Cooldown: 90 min."
+    q: "¿Cuántas OD pueden aliarse en un Traslado a Federal y qué límite existe?",
+    a: "Se permite alianza entre un máximo de 3 OD.\n\nNo hay límite de personas en el rol, pero sí un límite de categorías: por ejemplo, junto a un Cartel solo pueden sumarse como aliadas una Mafia, un MC y una Banda."
   },
   {
     id: 254, cat: "od",
@@ -1434,13 +1434,13 @@ export const QUESTIONS = [
   },
   {
     id: 267, cat: "ems",
-    q: "SITUACIÓN: Eres civil y encuentras un kit médico en el suelo. ¿Puedes usarlo para curarte?",
-    a: "NO. Los kits médicos son de uso EXCLUSIVO del personal EMS. Está terminantemente prohibido que los civiles los porten o utilicen.\n\nCualquier incumplimiento es infracción GRAVE."
+    q: "SITUACIÓN: Como EMS llegas a una escena catalogada como insegura o de alto riesgo. ¿Puedes ingresar sin autorización?",
+    a: "NO. Ningún funcionario puede ingresar a una escena insegura o de alto riesgo sin la autorización correspondiente.\n\nAnte peligro, el personal debe replegarse de inmediato y solicitar apoyo policial por las frecuencias radiales habilitadas; la seguridad del equipo siempre se prioriza antes que cualquier procedimiento médico."
   },
   {
     id: 268, cat: "ems",
-    q: "SITUACIÓN: Como EMS, ¿puedes salir a terreno sin tu uniforme reglamentario?",
-    a: "NO. El uso del uniforme reglamentario es OBLIGATORIO para cualquier salida a terreno.\n\nNo está permitido salir de servicio sin la vestimenta correspondiente al rango y función, ya que permite la correcta identificación del personal en zonas de emergencia."
+    q: "¿Cuántas horas de servicio semanales debe cumplir un integrante de EMS y cuántas se remuneran?",
+    a: "Debe cumplir un mínimo de 8 horas de servicio semanales para mantener actividad en la institución.\n\nSe reconoce un máximo de 30 horas semanales remuneradas; puede hacer más horas, pero no se consideran para efectos de sueldo."
   },
   {
     id: 269, cat: "ems",
@@ -1469,13 +1469,13 @@ export const QUESTIONS = [
   },
   {
     id: 274, cat: "ems",
-    q: "SITUACIÓN: Quieres entrar al hospital con la cara cubierta por una máscara. ¿Puedes?",
-    a: "NO, salvo que la situación médica lo justifique. Está prohibido ingresar al hospital con máscaras o el rostro cubierto.\n\nEsta medida busca mantener seguridad, transparencia y control dentro de las instalaciones hospitalarias."
+    q: "¿Puede el personal EMS favorecer a alguna de las partes en un conflicto?",
+    a: "NO. El Hospital St. Fiacre es una institución completamente neutral.\n\nEl personal EMS tiene prohibido participar, colaborar o favorecer a cualquiera de las partes en conflictos, enfrentamientos o actividades ilícitas, y debe mantener bajo estricta confidencialidad toda información médica o personal obtenida en el ejercicio de sus funciones."
   },
   {
     id: 275, cat: "ems",
-    q: "¿Dónde y cómo se solicita un turno para tratamiento especializado en el hospital?",
-    a: "A través del Discord, en el apartado EMS, canal #agendar-turno.\n\nEsto permite organizar el servicio y asegurar atención adecuada para cada caso. No es válido exigir atención inmediata sin turno para tratamientos especializados."
+    q: "¿Qué ocurre si un funcionario de EMS acumula 3 Strikes activos?",
+    a: "Significa su desvinculación inmediata de la institución, sin perjuicio de otras sanciones administrativas que puedan corresponder.\n\nLas faltas leves se sancionan con advertencias verbales o escritas; las graves o reiteradas, con Strikes."
   },
   {
     id: 276, cat: "ems",
@@ -1489,8 +1489,8 @@ export const QUESTIONS = [
   },
   {
     id: 278, cat: "ems",
-    q: "¿Qué actitud debe mantener todo civil hacia el personal médico?",
-    a: "Respeto en todo momento hacia el personal médico y el Hospital, reconociendo la labor crítica del equipo de emergencias en el bienestar de la ciudad.\n\nFaltar el respeto al personal médico es sancionable según la normativa del servidor."
+    q: "¿Puede un funcionario de EMS negarse a atender a un paciente?",
+    a: "Solo con una justificación válida dentro del rol, como: escena insegura, falta de recursos médicos o riesgo inminente para la integridad del personal.\n\nFuera de esos casos, el trato debe ser siempre profesional, respetuoso, imparcial y ético, sin importar la condición social, económica o legal del paciente."
   },
   {
     id: 279, cat: "ems",
@@ -1539,8 +1539,8 @@ export const QUESTIONS = [
   },
   {
     id: 288, cat: "ems",
-    q: "SITUACIÓN: Como EMS, ¿debes responder primero a un /auxilio civil o a un llamado de radio del LSPD durante DEFCON 1?",
-    a: "Al llamado de radio del LSPD. Durante DEFCON 1 debes priorizar EXCLUSIVAMENTE los llamados del LSPD y NO responder a /auxilio civiles por el peligro en curso."
+    q: "¿Qué debe mantener obligatoriamente todo funcionario de EMS durante su jornada de servicio?",
+    a: "Radio institucional conectada, localización activa y BodyCam encendida durante toda la jornada laboral.\n\nAdemás, los vehículos y recursos del Hospital St. Fiacre son de uso exclusivo para funciones médicas y de emergencia."
   },
   {
     id: 289, cat: "ems",
